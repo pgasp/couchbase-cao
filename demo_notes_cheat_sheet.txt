@@ -1,0 +1,104 @@
+
+
+Zoom in/out
+https://www.shortcutfoo.com/app/dojos/sublime-text-3-mac/cheatsheet
+
+---Demo Preparation
+
+Create cluster
+Cd /Users/pascalgasp/couchbase/demo/operator/cbsummit-create-eks-cluster
+
+python create_eks_script.py install
+kubectl create namespace couchbase
+
+kubectl config set-context --current --namespace=couchbase
+
+Install CAO
+
+cd /Users/pascalgasp/couchbase/demo/operator/couchbaseAO_2.2.0
+kubectl create -f crd.yaml
+bin/cbopcfg create admission
+bin/cbopcfg create operator
+
+#Check deploiyment status
+
+kubectl get deployments
+
+
+Cls
+
+
+
+=================
+DEMO 2:
+------
+Create cluster 6.6.0
+kubectl create -f couchabsecluster.yaml
+
+
+
+kubectl get pods -w
+
+// EXPLAIN content of yaml file
+
+
+forward port 
+kubectl port-forward cb-example-0000 8091:8091
+
+Run Pillowfight
+
+kubectl create -f pillowfight-data-loader.yaml
+
+
+// SUPPRESSION d'un pod DATA:
+kubectl delete pod cb-example-0002
+
+// Montrer le server cb-example-0002 KO
+
+// EXPLAIN 
+ - worst case (ephemeral storage for pod)  => on verra qu'il y a des solutions plus avancées avec mode de stkubectlkage persistant.
+ - rebalance (lent et en background pour assurer la prise en chagr du worklaod )
+ - replicas re-distribution
+ - montrer que le service tourne TOUJOURS !
+
+
+
+
+// upgrade 6.6.0 -> 6.6.2 : editer fichier YAML => décommenter 6.6.2 et commenter 6.6.0
+// SCALE UP 4 DATA nodes
+// EXLAIN MDS (multi dimensional scaling)
+
+kubectl create -f couchbasecluster.yaml
+
+=================
+=================
+
+
+
+STORAGE CLASS:
+--------------
+https://dkubectls.couchbase.com/operator/current/howto-storage-class.html
+
+
+kubectl get sc ibmc-file-gold -o yaml
+
+
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  labels:
+    addonmanager.kubernetes.io/mode: EnsureExists
+    kubernetes.io/cluster-service: "true"
+  name: my-ibmc-file-gold
+provisioner: ibm.io/ibmc-file
+reclaimPolicy: Delete
+volumeBindingMode: WaitForFirstConsumer
+
+====
+
+kubectl get pvc
+
+kubectl get pv
+
+kubectl get pods
+

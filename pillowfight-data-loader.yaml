@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pillowfight
+spec:
+  template:
+    metadata:
+      name: pillowfight
+    spec:
+      containers:
+      - name: pillowfight
+        image: sequoiatools/pillowfight:v5.0.1
+        command: [“cbc-pillowfight”,
+                  “-U”, “couchbase://demo-cluster/couchbase-demo-cluster?select_bucket=true”,
+                  “-I”, “10000”, “-B”, “100”, “-c”, “-1”, “--num-threads”, “15”, “-u”, “Administrator”, “-P”, “password”,“-v”,
+                  “-D”,“unsafe_optimize=true”,“-D”,“timeout=0.01"]
+      restartPolicy: Never

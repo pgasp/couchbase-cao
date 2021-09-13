@@ -67,11 +67,11 @@ spec:
     autoFailoverOnDataDiskIssuesTimePeriod: 20s
     autoFailoverServerGroup: false
   servers:
-  - size: 4
+  - size: 3
     name: server
     services:
     - data
-  - size: 2
+  - size: 1
     name: query_index
     services:
     - index

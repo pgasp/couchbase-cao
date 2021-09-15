@@ -56,7 +56,7 @@ spec:
         cluster: cb-example
   cluster:
     clusterName: developpez-com-cluster
-    dataServiceMemoryQuota: 1024Mi
+    dataServiceMemoryQuota: 2048Mi
     indexServiceMemoryQuota: 256Mi
     searchServiceMemoryQuota: 256Mi
     eventingServiceMemoryQuota: 256Mi

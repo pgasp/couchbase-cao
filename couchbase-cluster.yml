@@ -14,8 +14,8 @@ metadata:
   labels:
     cluster: cb-example
 spec:
-  name: couchbase-sample
-  memoryQuota: 200Mi
+  name: couchbaseDemo
+  memoryQuota: 512Mi
   replicas: 1
   ioPriority: low
   evictionPolicy: valueOnly
@@ -55,7 +55,7 @@ spec:
       matchLabels:
         cluster: cb-example
   cluster:
-    clusterName: developpez-com-cluster
+    clusterName: demo-cluster
     dataServiceMemoryQuota: 2048Mi
     indexServiceMemoryQuota: 256Mi
     searchServiceMemoryQuota: 256Mi

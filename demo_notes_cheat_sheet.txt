@@ -71,34 +71,4 @@ kubectl delete pod cb-example-0002
 kubectl create -f couchbasecluster.yaml
 
 =================
-=================
-
-
-
-STORAGE CLASS:
---------------
-https://dkubectls.couchbase.com/operator/current/howto-storage-class.html
-
-
-kubectl get sc ibmc-file-gold -o yaml
-
-
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  labels:
-    addonmanager.kubernetes.io/mode: EnsureExists
-    kubernetes.io/cluster-service: "true"
-  name: my-ibmc-file-gold
-provisioner: ibm.io/ibmc-file
-reclaimPolicy: Delete
-volumeBindingMode: WaitForFirstConsumer
-
-====
-
-kubectl get pvc
-
-kubectl get pv
-
-kubectl get pods
 

@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cb-example-xdcr-auth
+type: Opaque
+data:
+  username: QWRtaW5pc3RyYXRvcg== # Administrator
+  password: cGFzc3dvcmQ=         # password
+---
+apiVersion: couchbase.com/v2
+kind: CouchbaseBucket
+metadata:
+  name: my-bucket-xdcr
+  labels:
+    cluster: cb-example-xdcr
+spec:
+  name: couchbaseDemo
+  memoryQuota: 100Mi
+  replicas: 1
+  ioPriority: low
+  evictionPolicy: valueOnly
+  conflictResolution: seqno
+  enableFlush: true
+  minimumDurability: none
+
+---
+apiVersion: couchbase.com/v2
+kind: CouchbaseCluster
+metadata:
+  name: cb-example-xdcr
+spec:
+  #image: couchbase/server:6.6.0
+  image: couchbase/server:7.0.0
+  security:
+    adminSecret: cb-example-xdcr-auth
+  buckets:
+    managed: true
+    selector:
+      matchLabels:
+        cluster: cb-example-xdcr
+  cluster:
+    clusterName: london-cluster
+    dataServiceMemoryQuota: 1024Mi
+    indexServiceMemoryQuota: 256Mi
+    searchServiceMemoryQuota: 256Mi
+    eventingServiceMemoryQuota: 256Mi
+    analyticsServiceMemoryQuota: 1Gi
+    autoFailoverTimeout: 10s
+    autoFailoverMaxCount: 2
+    autoFailoverOnDataDiskIssues: true
+    autoFailoverOnDataDiskIssuesTimePeriod: 20s
+    autoFailoverServerGroup: false
+  servers:
+  - size: 3
+    name: server
+    services:
+    - data

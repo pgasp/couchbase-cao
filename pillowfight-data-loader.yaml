@@ -12,6 +12,6 @@ spec:
         image: sequoiatools/pillowfight:6.5
         command: ["cbc-pillowfight",
                   "-U", "couchbase://cb-example-srv/couchbaseDemo?select_bucket=true",
-                  "-I", "10000", "-B", "100", "-c", "-1", "--num-threads", "15", "-u", "Administrator", "-P", "password","-v",
+                  "-I", "100000", "-B", "100", "-c", "-1", "--num-threads", "15", "-u", "Administrator", "-P", "password","-v",
                   "-D","unsafe_optimize=true","-D","timeout=0.01"]
       restartPolicy: Never

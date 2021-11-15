@@ -18,7 +18,7 @@ Install CAO
 cd /Users/pascalgasp/couchbase/demo/operator/couchbaseAO_2.2.0
 kubectl create -f crd.yaml
 bin/cbopcfg create admission
-bin/cbopcfg create operator
+Cd 
 
 #Check deploiyment status
 

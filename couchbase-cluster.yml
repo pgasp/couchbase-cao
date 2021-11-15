@@ -46,7 +46,7 @@ metadata:
   name: cb-example
 spec:
   #image: couchbase/server:6.6.0
-  image: couchbase/server:7.0.0
+  image: couchbase/server:7.0.2
   security:
     adminSecret: cb-example-auth
   buckets:
@@ -55,7 +55,7 @@ spec:
       matchLabels:
         cluster: cb-example
   cluster:
-    clusterName: demo-cluster
+    clusterName: paris-cluster
     dataServiceMemoryQuota: 2048Mi
     indexServiceMemoryQuota: 256Mi
     searchServiceMemoryQuota: 256Mi
@@ -71,7 +71,7 @@ spec:
     name: server
     services:
     - data
-  - size: 1
+  - size: 2
     name: query_index
     services:
     - index
